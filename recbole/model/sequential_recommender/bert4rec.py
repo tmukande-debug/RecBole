@@ -77,15 +77,13 @@ class BERT4Rec(SequentialRecommender):
         EN_SEQ_LEN = 4096
         
         self.trm_encoder = SinkhornTransformerLM(
-                depth=self.n_layers,
-                heads=self.n_heads,
-                bucket_size=self.hidden_size,
-                dim =self.inner_size,
-                attn_dropout_prob=self.hidden_dropout_prob,
-                max_seq_len = DE_SEQ_LEN,
-                num_tokens = 20000,
-                reversible = True,
-                return_embeddings = True
+               num_tokens = 20000,
+               dim = 1024,
+               heads = self.n_heads,,
+               depth = self.n_layers,,
+               bucket_size = 75,
+               max_seq_len = 8192,
+               causal = True
            )
             
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
