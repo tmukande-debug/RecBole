@@ -81,7 +81,7 @@ class BERT4Rec(SequentialRecommender):
                 heads=self.n_heads,
                 bucket_size=self.hidden_size,
                 dim =self.inner_size,
-                attn_dropout_prob=self.attn_dropout_prob,
+                attn_dropout_prob=self.hidden_dropout_prob,,
                 max_seq_len = DE_SEQ_LEN,
                 num_tokens = 20000,
                 reversible = True,
