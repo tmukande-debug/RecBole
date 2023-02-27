@@ -76,7 +76,7 @@ class BERT4Rec(SequentialRecommender):
         self.trm_encoder=BlockRecurrentTransformer(
                num_tokens = 2000,
                dim = self.inner_size,
-               depth = self.n_layers,
+               depth = 6,
                dim_head = 64,
                heads = self.n_heads,
                xl_memories_layers = (3, 4),
