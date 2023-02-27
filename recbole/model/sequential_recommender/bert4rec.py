@@ -79,8 +79,8 @@ class BERT4Rec(SequentialRecommender):
         self.trm_encoder = SinkhornTransformerLM(
                num_tokens = 20000,
                dim = 1024,
-               heads = self.n_heads,,
-               depth = self.n_layers,,
+               heads = self.n_heads,
+               depth = self.n_layers,
                bucket_size = 75,
                max_seq_len = 8192,
                causal = True
