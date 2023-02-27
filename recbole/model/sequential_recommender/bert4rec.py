@@ -23,8 +23,7 @@ from torch import nn
 
 from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder
-from block_recurrent_transformer_pytorch import BlockRecurrentTransformer
-
+from sinkhorn_transformer import SinkhornTransformerLM
 
 class BERT4Rec(SequentialRecommender):
     def __init__(self, config, dataset):
@@ -73,15 +72,22 @@ class BERT4Rec(SequentialRecommender):
            # hidden_act=self.hidden_act,
            # layer_norm_eps=self.layer_norm_eps,
         #)
-        self.trm_encoder=BlockRecurrentTransformer(
-               num_tokens = 2000,
-               dim = self.inner_size,
-               depth = 6,
-               dim_head = 64,
-               heads = self.n_heads,
-               xl_memories_layers = (3, 4),
-               recurrent_layers = (2, 3)
-              )
+        
+        DE_SEQ_LEN = 4096
+        EN_SEQ_LEN = 4096
+        
+        self.trm_encoder = SinkhornTransformerLM(
+                depth=self.n_layers,
+                heads=self.n_heads,
+                bucket_size=self.hidden_size,
+                dim =self.inner_size,
+                attn_dropout_prob=self.attn_dropout_prob,
+                max_seq_len = DE_SEQ_LEN,
+                num_tokens = 20000,
+                reversible = True,
+                return_embeddings = True
+           )
+            
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
         self.dropout = nn.Dropout(self.hidden_dropout_prob)
 
