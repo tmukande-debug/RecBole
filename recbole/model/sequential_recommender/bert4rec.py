@@ -62,17 +62,25 @@ class BERT4Rec(SequentialRecommender):
         self.position_embedding = nn.Embedding(
             self.max_seq_length, self.hidden_size
         )  # add mask_token at the last
-        self.trm_encoder = TransformerEncoder(
-            n_layers=self.n_layers,
-            n_heads=self.n_heads,
-            hidden_size=self.hidden_size,
-            inner_size=self.inner_size,
-            hidden_dropout_prob=self.hidden_dropout_prob,
-            attn_dropout_prob=self.attn_dropout_prob,
-            hidden_act=self.hidden_act,
-            layer_norm_eps=self.layer_norm_eps,
-        )
-
+        #self.trm_encoder = TransformerEncoder(
+            #n_layers=self.n_layers,
+            #n_heads=self.n_heads,
+            #hidden_size=self.hidden_size,
+            #inner_size=self.inner_size,
+            #hidden_dropout_prob=self.hidden_dropout_prob,
+            #attn_dropout_prob=self.attn_dropout_prob,
+           # hidden_act=self.hidden_act,
+           # layer_norm_eps=self.layer_norm_eps,
+        #)
+        self.trm_encoder=BlockRecurrentTransformer(
+               num_tokens = 2000,
+               dim = self.inner_size,
+               depth = self.n_layers,
+               dim_head = 64,
+               heads = self.n_heads,
+               xl_memories_layers = (3, 4),
+               recurrent_layers = (2, 3)
+              )
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
         self.dropout = nn.Dropout(self.hidden_dropout_prob)
 
