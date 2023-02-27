@@ -23,6 +23,7 @@ from torch import nn
 
 from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder
+from block_recurrent_transformer_pytorch import BlockRecurrentTransformer
 
 
 class BERT4Rec(SequentialRecommender):
