@@ -23,7 +23,7 @@ from torch import nn
 
 from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder
-from memory_compressed_attention import MemoryCompressedAttention
+from memory_efficient_attention_pytorch import Attention
 
 
 class BERT4Rec(SequentialRecommender):
@@ -76,13 +76,15 @@ class BERT4Rec(SequentialRecommender):
         
         
         
-        self.trm_encoder = MemoryCompressedAttention(
-              dim = self.inner_size,
-              heads = self.n_heads,                 # number of heads
-              causal = False,            # auto-regressive or not
-              compression_factor = 4,    # compression ratio
-              dropout = self.hidden_dropout_prob              # dropout post-attention
-              )
+        self.trm_encoder  =Attention(
+            dim = self.hidden_size,
+            dim_head = 64,                # dimension per head
+            heads = self.n_heads,                    # number of attention heads
+            causal = True,                # autoregressive or not
+            memory_efficient = True,      # whether to use memory efficient attention (can be turned off to test against normal attention)
+            q_bucket_size = 1024,         # bucket size along queries dimension
+            k_bucket_size = 2048          # bucket size along key / values dimension
+            )
 
             
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
