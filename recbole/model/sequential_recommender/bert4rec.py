@@ -78,7 +78,7 @@ class BERT4Rec(SequentialRecommender):
         
         self.trm_encoder  =Attention(
             dim = self.hidden_size,
-            dim_head = 64,                # dimension per head
+            dim_head = self.hidden_size,                # dimension per head
             heads = self.n_heads,                    # number of attention heads
             causal = True,                # autoregressive or not
             memory_efficient = True,      # whether to use memory efficient attention (can be turned off to test against normal attention)
