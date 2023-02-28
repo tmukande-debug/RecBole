@@ -23,7 +23,8 @@ from torch import nn
 
 from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder
-from sinkhorn_transformer import SinkhornTransformerLM
+from memory_compressed_attention import MemoryCompressedAttention
+
 
 class BERT4Rec(SequentialRecommender):
     def __init__(self, config, dataset):
@@ -80,7 +81,7 @@ class BERT4Rec(SequentialRecommender):
               heads = self.n_heads,                 # number of heads
               causal = False,            # auto-regressive or not
               compression_factor = 3,    # compression ratio
-              dropout = 0.1              # dropout post-attention
+              dropout = self.hidden_dropout_prob              # dropout post-attention
               )
 
             
