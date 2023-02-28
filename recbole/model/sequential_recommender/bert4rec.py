@@ -134,7 +134,8 @@ class BERT4Rec(SequentialRecommender):
         input_emb = self.dropout(input_emb)
         extended_attention_mask = self.get_attention_mask(item_seq, bidirectional=True)
         trm_output = self.trm_encoder(
-            input_emb, extended_attention_mask, output_all_encoded_layers=True
+            #input_emb, extended_attention_mask, output_all_encoded_layers=True
+            input_emb, extended_attention_mask
         )
         output = trm_output[-1]
         return output  # [B L H]
