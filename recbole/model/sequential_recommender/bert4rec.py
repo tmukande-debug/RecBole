@@ -23,8 +23,7 @@ from torch import nn
 
 from recbole.model.abstract_recommender import SequentialRecommender
 from recbole.model.layers import TransformerEncoder
-from memory_efficient_attention_pytorch import Attention
-
+from nystrom_attention import Nystromer
 
 class BERT4Rec(SequentialRecommender):
     def __init__(self, config, dataset):
@@ -76,15 +75,14 @@ class BERT4Rec(SequentialRecommender):
         
         
         
-        self.trm_encoder  =Attention(
-            dim = self.hidden_size,
-            dim_head = self.hidden_size,                # dimension per head
-            heads = self.n_heads,                    # number of attention heads
-            causal = True,                # autoregressive or not
-            memory_efficient = True,      # whether to use memory efficient attention (can be turned off to test against normal attention)
-            q_bucket_size = 1024,         # bucket size along queries dimension
-            k_bucket_size = 2048          # bucket size along key / values dimension
-            )
+        self.trm_encoder  =Nystromformer(
+              dim = self.inner_size,
+              dim_head = 64,
+              heads = self.n_heads,
+              depth = self.n_layers,
+              num_landmarks = 256,
+              pinv_iterations = 6
+              )
 
             
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
