@@ -73,18 +73,16 @@ class BERT4Rec(SequentialRecommender):
            # layer_norm_eps=self.layer_norm_eps,
         #)
         
-        DE_SEQ_LEN = 4096
-        EN_SEQ_LEN = 4096
         
-        self.trm_encoder = SinkhornTransformerLM(
-               num_tokens = 20000,
-               dim = 1024,
-               heads = self.n_heads,
-               depth = self.n_layers,
-               bucket_size = 75,
-               max_seq_len = 8192,
-               causal = True
-           )
+        
+        self.trm_encoder = MemoryCompressedAttention(
+              dim = self.inner_size,
+              heads = self.n_heads,                 # number of heads
+              causal = False,            # auto-regressive or not
+              compression_factor = 3,    # compression ratio
+              dropout = 0.1              # dropout post-attention
+              )
+
             
         self.LayerNorm = nn.LayerNorm(self.hidden_size, eps=self.layer_norm_eps)
         self.dropout = nn.Dropout(self.hidden_dropout_prob)
