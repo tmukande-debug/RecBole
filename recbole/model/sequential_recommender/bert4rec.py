@@ -77,10 +77,10 @@ class BERT4Rec(SequentialRecommender):
         
         
         self.trm_encoder = MemoryCompressedAttention(
-              dim = self.hidden_size,
+              dim = self.inner_size,
               heads = self.n_heads,                 # number of heads
               causal = False,            # auto-regressive or not
-              compression_factor = 8,    # compression ratio
+              compression_factor = 4,    # compression ratio
               dropout = self.hidden_dropout_prob              # dropout post-attention
               )
 
