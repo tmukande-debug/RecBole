@@ -30,6 +30,12 @@ class TestGeneralRecommender(unittest.TestCase):
         }
         quick_test(config_dict)
 
+    def test_random(self):
+        config_dict = {
+            "model": "Random",
+        }
+        quick_test(config_dict)
+
     def test_itemknn(self):
         config_dict = {
             "model": "ItemKNN",
@@ -233,6 +239,22 @@ class TestGeneralRecommender(unittest.TestCase):
         config_dict = {"model": "NCL", "num_clusters": 100}
         quick_test(config_dict)
 
+    def test_DiffRec(self):
+        config_dict = {"model": "DiffRec"}
+        quick_test(config_dict)
+
+    def test_TDiffRec(self):
+        config_dict = {"model": "DiffRec", "time-aware": True}
+        quick_test(config_dict)
+
+    def test_LDiffRec(self):
+        config_dict = {"model": "LDiffRec"}
+        quick_test(config_dict)
+
+    def test_LTDiffRec(self):
+        config_dict = {"model": "LDiffRec", "time-aware": True}
+        quick_test(config_dict)
+
 
 class TestContextRecommender(unittest.TestCase):
     # todo: more complex context information should be test, such as criteo dataset
@@ -408,6 +430,13 @@ class TestContextRecommender(unittest.TestCase):
         }
         quick_test(config_dict)
 
+    def test_eulernet(self):
+        config_dict = {
+            "model": "EulerNet",
+            "threshold": {"rating": 4},
+        }
+        quick_test(config_dict)
+
 
 class TestSequentialRecommender(unittest.TestCase):
     def test_din(self):
@@ -428,6 +457,10 @@ class TestSequentialRecommender(unittest.TestCase):
 
     def test_gru4rec(self):
         config_dict = {"model": "GRU4Rec", "train_neg_sample_args": None}
+        quick_test(config_dict)
+
+    def test_gru4reccpr(self):
+        config_dict = {"model": "GRU4RecCPR", "train_neg_sample_args": None}
         quick_test(config_dict)
 
     def test_gru4rec_with_BPR_loss(self):
@@ -501,6 +534,10 @@ class TestSequentialRecommender(unittest.TestCase):
 
     def test_sasrec(self):
         config_dict = {"model": "SASRec", "train_neg_sample_args": None}
+        quick_test(config_dict)
+
+    def test_sasreccpr(self):
+        config_dict = {"model": "SASRecCPR", "train_neg_sample_args": None}
         quick_test(config_dict)
 
     def test_sasrec_with_BPR_loss_and_relu(self):
@@ -723,6 +760,13 @@ class TestSequentialRecommender(unittest.TestCase):
             "model": "CORE",
             "train_neg_sample_args": None,
             "dnn_type": "ave",
+        }
+        quick_test(config_dict)
+
+    def test_fea_rec(self):
+        config_dict = {
+            "model": "FEARec",
+            "train_neg_sample_args": None,
         }
         quick_test(config_dict)
 

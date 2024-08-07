@@ -59,6 +59,7 @@ class DGCF(GeneralRecommender):
     we carefully design the data interface and use sparse tensor to train and test efficiently.
     We implement the model following the original author with a pairwise training mode.
     """
+
     input_type = InputType.PAIRWISE
 
     def __init__(self, config, dataset):
@@ -335,7 +336,7 @@ class DGCF(GeneralRecommender):
             r = torch.sum(X * X, dim=1, keepdim=True)
             # (N, 1)
             # (x^2 - 2xy + y^2) -> l2 distance between all vectors
-            value = r - 2 * torch.mm(X, X.T + r.T)
+            value = r - 2 * torch.mm(X, X.T) + r.T
             zero_value = torch.zeros_like(value)
             value = torch.where(value > 0.0, value, zero_value)
             D = torch.sqrt(value + 1e-8)

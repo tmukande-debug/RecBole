@@ -24,14 +24,14 @@
 
 RecBole is developed based on Python and PyTorch for reproducing and developing recommendation algorithms in a unified,
 comprehensive and efficient framework for research purpose.
-Our library includes 78 recommendation algorithms, covering four major categories:
+Our library includes 91 recommendation algorithms, covering four major categories:
 
 + General Recommendation
 + Sequential Recommendation
 + Context-aware Recommendation
 + Knowledge-based Recommendation
 
-We design a unified and flexible data file format, and provide the support for 28 benchmark recommendation datasets.
+We design a unified and flexible data file format, and provide the support for 43 benchmark recommendation datasets.
 A user can apply the provided script to process the original data copy, or simply download the processed datasets
 by our team.
 
@@ -59,11 +59,13 @@ for testing and comparing recommendation algorithms.
 
 
 ## RecBole News
+![new](/asset/new.gif) **11/01/2023**: We release RecBole [v1.2.0](https://github.com/RUCAIBox/RecBole/releases/tag/v1.2.0).
+
 ![new](/asset/new.gif) **11/06/2022**: We release [the optimal hyperparameters of the model and their tuning ranges](https://recbole.io/hyperparameters/index.html).
 
-![new](/asset/new.gif) **10/05/2022**: We release RecBole [v1.1.1](https://github.com/RUCAIBox/RecBole/releases/tag/v1.1.1).
+**10/05/2022**: We release RecBole [v1.1.1](https://github.com/RUCAIBox/RecBole/releases/tag/v1.1.1).
 
-![new](/asset/new.gif) **06/28/2022**: We release [**RecBole2.0**](https://github.com/RUCAIBox/RecBole2.0) with **8 packages** consisting of **65 newly implement models**. 
+**06/28/2022**: We release [**RecBole2.0**](https://github.com/RUCAIBox/RecBole2.0) with **8 packages** consisting of **65 newly implement models**. 
 
 **02/25/2022**: We release RecBole [v1.0.1](https://github.com/RUCAIBox/RecBole/releases/tag/v1.0.1).
 
@@ -99,7 +101,7 @@ These extensions make it much easier to reproduce the benchmark results and stay
 |          Aspect           |            RecBole 1.0             |          RecBole 2.0           |                   This update                    |
 | :-----------------------: | :--------------------------------: | :----------------------------: | :----------------------------------------------: |
 |   Recommendation tasks    |            4 categories            |    3 topics and 5 packages     |                   4 categories                   |
-|    Models and datasets    |     73 models and 28 datasets      |  65 models and 8 new datasets  |            86 models and 41 datasets             |
+|    Models and datasets    |     73 models and 28 datasets      |  65 models and 8 new datasets  |            91 models and 43 datasets             |
 |      Data structure       | Implemented Dataset and Dataloader |         Task-oriented          |  Compatible data module inherited from PyTorch   |
 |    Continuous features    |          Field embedding           |        Field embedding         |        Field embedding and discretization        |
 | GPU-accelerated execution |       Single-GPU utilization       |     Single-GPU utilization     |      Multi-GPU and mixed precision training      |
@@ -247,6 +249,7 @@ We will keep improving our implementations, and update these test results.
 ## RecBole Major Releases
 | Releases | Date       |
 |----------|------------|
+| v1.2.0   | 11/01/2023 |
 | v1.1.1   | 10/05/2022 |
 | v1.0.0   | 09/17/2021 |
 | v0.2.0   | 01/15/2021 |
@@ -290,7 +293,7 @@ We thank the nice contributions through PRs from [@rowedenny](https://github.com
 
 
 ## Cite
-If you find RecBole useful for your research or development, please cite the following papers: [RecBole[1.0]](https://arxiv.org/abs/2011.01731), [RecBole[2.0]](https://dl.acm.org/doi/abs/10.1145/3459637.3482016) and [RecBole[1.1.1]](https://arxiv.org/abs/2211.15148).
+If you find RecBole useful for your research or development, please cite the following papers: [RecBole[1.0]](https://arxiv.org/abs/2011.01731), [RecBole[2.0]](https://dl.acm.org/doi/abs/10.1145/3459637.3482016) and [RecBole[1.2.0]](https://dl.acm.org/doi/10.1145/3539618.3591889).
 
 ```bibtex
 @inproceedings{recbole[1.0],
@@ -302,17 +305,20 @@ If you find RecBole useful for your research or development, please cite the fol
   year      = {2021}
 }
 @inproceedings{recbole[2.0],
-  title={RecBole 2.0: Towards a More Up-to-Date Recommendation Library},
-  author={Zhao, Wayne Xin and Hou, Yupeng and Pan, Xingyu and Yang, Chen and Zhang, Zeyu and Lin, Zihan and Zhang, Jingsen and Bian, Shuqing and Tang, Jiakai and Sun, Wenqi and others},
-  booktitle={Proceedings of the 31st ACM International Conference on Information \& Knowledge Management},
-  pages={4722--4726},
-  year={2022}
+  author    = {Wayne Xin Zhao and Yupeng Hou and Xingyu Pan and Chen Yang and Zeyu Zhang and Zihan Lin and Jingsen Zhang and Shuqing Bian and Jiakai Tang and Wenqi Sun and Yushuo Chen and Lanling Xu and Gaowei Zhang and Zhen Tian and Changxin Tian and Shanlei Mu and Xinyan Fan and Xu Chen and Ji{-}Rong Wen},
+  title     = {RecBole 2.0: Towards a More Up-to-Date Recommendation Library},
+  booktitle = {{CIKM}},
+  pages     = {4722--4726},
+  publisher = {{ACM}},
+  year      = {2022}
 }
-@misc{recbole[1.1.1],
-  author = {Xu, Lanling and Tian, Zhen and Zhang, Gaowei and Wang, Lei and Zhang, Junjie and Zheng, Bowen and Li, Yifan and Hou, Yupeng and Pan, Xingyu and Chen, Yushuo and Zhao, Wayne Xin and Chen, Xu and Wen, Ji-Rong},
-  title = {Recent Advances in RecBole: Extensions with more Practical Considerations},
-  journal   = {arXiv preprint arXiv:2211.15148},
-  year = {2022}
+@inproceedings{recbole[1.2.0],
+  author    = {Lanling Xu and Zhen Tian and Gaowei Zhang and Junjie Zhang and Lei Wang and Bowen Zheng and Yifan Li and Jiakai Tang and Zeyu Zhang and Yupeng Hou and Xingyu Pan and Wayne Xin Zhao and Xu Chen and Ji{-}Rong Wen},
+  title     = {Towards a More User-Friendly and Easy-to-Use Benchmark Library for Recommender Systems},
+  booktitle = {{SIGIR}},
+  pages     = {2837--2847},
+  publisher = {{ACM}},
+  year      = {2023}
 }
 ```
 
@@ -326,9 +332,14 @@ Here is the list of our lead developers in each development phase. They are the 
 |         Time          |        Version         |                Lead Developers                 |                Paper            |
 | :-------------------: | :--------------------: | :--------------------------------------------: | ---------------------------------------------- |
 | June 2020<br> ~<br> Nov. 2020 |        v0.1.1         |  Shanlei Mu ([@ShanleiMu](https://github.com/ShanleiMu)), Yupeng Hou ([@hyp1231](https://github.com/hyp1231)),<br> Zihan Lin ([@linzihan-backforward](https://github.com/linzihan-backforward)), Kaiyuan Li ([@tsotfsk](https://github.com/tsotfsk))| [PDF](https://dl.acm.org/doi/abs/10.1145/3459637.3482016) |
-|    Nov. 2020<br> ~ <br> Oct. 2022    | v0.1.2 ~ v1.0.1 |      Yushuo Chen ([@chenyushuo](https://github.com/chenyushuo)), Xingyu Pan ([@2017pxy](https://github.com/2017pxy))    | [PDF](https://dl.acm.org/doi/abs/10.1145/3459637.3482016)  |
-| Oct. 2022<br/> ~ <br/> now | v1.1.0 ~ v1.1.1 | Lanling Xu ([@Sherry-XLL](https://github.com/Sherry-XLL)), Zhen Tian ([@chenyuwuxin](https://github.com/chenyuwuxin)), Gaowei Zhang ([@Wicknight](https://github.com/Wicknight)), Lei Wang ([@Paitesanshi](https://github.com/Paitesanshi)), Junjie Zhang ([@leoleojie](https://github.com/leoleojie)) | [PDF](https://arxiv.org/abs/2211.15148) |
+|    Nov. 2020<br> ~ <br> Jul. 2022    | v0.1.2 ~ v1.0.1 |      Yushuo Chen ([@chenyushuo](https://github.com/chenyushuo)), Xingyu Pan ([@2017pxy](https://github.com/2017pxy))    | [PDF](https://dl.acm.org/doi/abs/10.1145/3459637.3482016)  |
+| Jul. 2022<br/> ~ <br/> Nov. 2023 | v1.1.0 ~ v1.1.1 | Lanling Xu ([@Sherry-XLL](https://github.com/Sherry-XLL)), Zhen Tian ([@chenyuwuxin](https://github.com/chenyuwuxin)), Gaowei Zhang ([@Wicknight](https://github.com/Wicknight)), Lei Wang ([@Paitesanshi](https://github.com/Paitesanshi)), Junjie Zhang ([@leoleojie](https://github.com/leoleojie)) | [PDF](https://dl.acm.org/doi/10.1145/3539618.3591889) |
+| Nov. 2023<br/> ~ <br/> now | v1.2.0 | Bowen Zheng ([@zhengbw0324](https://github.com/zhengbw0324)), Chen Ma ([@Yilu114](https://github.com/Yilu114)) | [PDF](https://dl.acm.org/doi/10.1145/3539618.3591889) |
 
 
 ## License
 RecBole uses [MIT License](./LICENSE). All data and code in this project can only be used for academic purposes.
+
+## Acknowledgments
+
+This project was supported by National Natural Science Foundation of China (No. 61832017).
